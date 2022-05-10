@@ -1,12 +1,13 @@
 package guru.springframework.spring5webapp.controllers;
 
 import guru.springframework.spring5webapp.repositories.BookRepository;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
-
+/**
+ * Created by jt on 12/24/19.
+ */
 @Controller
 public class BookController {
 
@@ -16,11 +17,11 @@ public class BookController {
         this.bookRepository = bookRepository;
     }
 
-    @GetMapping(path = "/books", produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping("/books")
     public String getBooks(Model model){
 
         model.addAttribute("books", bookRepository.findAll());
 
-        return "books";
+        return "books/list";
     }
 }
